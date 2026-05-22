@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import "tailwindcss";
+
+:root {
+  --page-bg: #f4f2ea;
+  --surface: #fffdf8;
+  --surface-soft: #ece8dc;
+  --surface-strong: #d9e7df;
+  --text: #18343a;
+  --muted: #62777b;
+  --primary: #276b73;
+  --primary-strong: #1d5258;
+  --primary-dark: #1b4e55;
+  --primary-soft: #dfece6;
+  --accent: #db6f4a;
+  --accent-soft: #f1d7c8;
+  --border: #d9ddd2;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,72 @@
+services:
+  gateway:
+    image: rajlodhi09/yourbeep-gateway:latest
+    container_name: yourbeep-gateway
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      GATEWAY_PORT: 4000
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    depends_on:
+      - identity
+      - content
+      - commerce
+    ports:
+      - "4000:4000"
+
+  identity:
+    image: rajlodhi09/yourbeep-identity:latest
+    container_name: yourbeep-identity
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      IDENTITY_PORT: 4001
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    ports:
+      - "4001:4001"
+
+  content:
+    image: rajlodhi09/yourbeep-content:latest
+    container_name: yourbeep-content
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      CONTENT_PORT: 4002
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    ports:
+      - "4002:4002"
+
+  commerce:
+    image: rajlodhi09/yourbeep-commerce:latest
+    container_name: yourbeep-commerce
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      COMMERCE_PORT: 4003
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    ports:
+      - "4003:4003"

@@ -1,0 +1,87 @@
+{success: true,…}
+data: {submission: {userId: "6a06f2f651aef9c9bf5bb359", gameId: "6a059305b12f71a87909e648",…}}
+submission: {userId: "6a06f2f651aef9c9bf5bb359", gameId: "6a059305b12f71a87909e648",…}
+completedAt: "2026-05-20T05:17:21.933Z"
+courseGameWeights: [{gameId: "6a059305b12f71a87909e649", weight: 25}, {gameId: "6a059305b12f71a87909e648", weight: 25},…]
+0: {gameId: "6a059305b12f71a87909e649", weight: 25}
+1: {gameId: "6a059305b12f71a87909e648", weight: 25}
+2: {gameId: "6a059305b12f71a87909e647", weight: 25}
+3: {gameId: "6a059305b12f71a87909e646", weight: 25}
+courseId: "6a05939f043dbe12b94538bc"
+createdAt: "2026-05-20T05:17:21.940Z"
+finalCourseScore: null
+gameId: "6a059305b12f71a87909e648"
+isComplete: true
+payload: {exercises: [{exerciseKey: "draw_your_breath", durationSeconds: 4,…},…]}
+exercises: [{exerciseKey: "draw_your_breath", durationSeconds: 4,…},…]
+0: {exerciseKey: "draw_your_breath", durationSeconds: 4,…}
+durationSeconds: 4
+exerciseKey: "draw_your_breath"
+metrics: {controlLimitSpacing: "wide", intervalPattern: "narrow_to_wide", penLiftCount: 1,…}
+averageStep: 35.83
+axisDrift: 2.017
+bounds: {minX: 0, maxX: 1045.4, minY: 102.7, maxY: 621}
+maxX: 1045.4
+maxY: 621
+minX: 0
+minY: 102.7
+canvas: {width: 1000, height: 700}
+height: 700
+width: 1000
+circularVariance: 0.411
+closureRatio: 0
+controlLimitSpacing: "wide"
+directionChanges: 13
+intervalPattern: "narrow_to_wide"
+penLiftCount: 1
+spatialCoverage: 0.77
+strokeCount: 2
+totalLength: 12429.1
+totalPoints: 355
+trace: [{x: 0.156, y: 0.173, t: 0}, {x: 0.158, y: 0.172, t: 10}, {x: 0.145, y: 0.535, t: 383},…]
+1: {exerciseKey: "awareness_circles", durationSeconds: 3,…}
+durationSeconds: 3
+exerciseKey: "awareness_circles"
+metrics: {circleCompleteness: 0.89, circlePattern: "contained", overlapDensity: 5.67, isolatedCircleCount: 2,…}
+averageStep: 8.32
+axisDrift: 2.199
+bounds: {minX: 277.5, maxX: 642.5, minY: 214.8, maxY: 380.8}
+canvas: {width: 1000, height: 700}
+circleCompleteness: 0.89
+circlePattern: "contained"
+circularVariance: 0.311
+closureRatio: 1
+directionChanges: 17
+isolatedCircleCount: 2
+overlapDensity: 5.67
+penLiftCount: 2
+spatialCoverage: 0.09
+strokeCount: 3
+totalLength: 1060.9
+totalPoints: 173
+trace: [{x: 0.3, y: 0.357, t: 0}, {x: 0.299, y: 0.355, t: 14}, {x: 0.296, y: 0.354, t: 39},…]
+[0 … 99]
+[100 … 172]
+2: {exerciseKey: "scribble_drawing", durationSeconds: 2,…}
+resultData: {exercises: [{exerciseKey: "draw_your_breath", durationSeconds: 4,…},…], presenceScore: 1.83,…}
+actionScore: 2.56
+exercises: [{exerciseKey: "draw_your_breath", durationSeconds: 4,…},…]
+0: {exerciseKey: "draw_your_breath", durationSeconds: 4,…}
+1: {exerciseKey: "awareness_circles", durationSeconds: 3,…}
+2: {exerciseKey: "scribble_drawing", durationSeconds: 2,…}
+labels: {presenceAttention: "Medium", action: "High", pattern: "Medium"}
+action: "High"
+pattern: "Medium"
+presenceAttention: "Medium"
+overallScore: 2.24
+patternScore: 2.33
+presenceScore: 1.83
+score: 2.24
+type: "pattern_awareness"
+updatedAt: "2026-05-20T05:17:21.940Z"
+userId: "6a06f2f651aef9c9bf5bb359"
+__v: 0
+_id: "6a0d43e1d3affeb5b9a5f69c"
+message: "Game submitted"
+success: true
+timestamp: "2026-05-20T05:17:24.599Z"

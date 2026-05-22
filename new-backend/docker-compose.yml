@@ -1,0 +1,121 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: yourbeep-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: gateway
+    container_name: yourbeep-gateway
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      GATEWAY_PORT: 4000
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    depends_on:
+      identity:
+        condition: service_started
+      content:
+        condition: service_started
+      commerce:
+        condition: service_started
+    ports:
+      - "4000:4000"
+
+  identity:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: identity
+    container_name: yourbeep-identity
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      IDENTITY_PORT: 4001
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      MONGODB_URI_IDENTITY: mongodb://mongo:27017/yourbeep_identity
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "4001:4001"
+
+  content:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: content
+    container_name: yourbeep-content
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      CONTENT_PORT: 4002
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      MONGODB_URI_CONTENT: mongodb://mongo:27017/yourbeep_content
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "4002:4002"
+
+  commerce:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_NAME: commerce
+    container_name: yourbeep-commerce
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      COMMERCE_PORT: 4003
+      GATEWAY_URL: http://gateway:4000
+      IDENTITY_URL: http://identity:4001
+      CONTENT_URL: http://content:4002
+      COMMERCE_URL: http://commerce:4003
+      MONGODB_URI_COMMERCE: mongodb://mongo:27017/yourbeep_commerce
+      FIREBASE_SERVICE_ACCOUNT_PATH: ""
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - "4003:4003"
+
+volumes:
+  mongo_data:

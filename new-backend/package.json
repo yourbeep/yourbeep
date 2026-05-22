@@ -1,0 +1,47 @@
+{
+  "name": "yourbeep-backend",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:gateway": "bun --watch apps/gateway/src/index.ts",
+    "dev:identity": "bun --watch apps/identity/src/index.ts",
+    "dev:content": "bun --watch apps/content/src/index.ts",
+    "dev:commerce": "bun --watch apps/commerce/src/index.ts",
+    "dev": "bun run --filter '*' dev",
+    "build:gateway": "bun build apps/gateway/src/index.ts --target bun --outdir dist/apps/gateway",
+    "build:identity": "bun build apps/identity/src/index.ts --target bun --outdir dist/apps/identity",
+    "build:content": "bun build apps/content/src/index.ts --target bun --outdir dist/apps/content",
+    "build:commerce": "bun build apps/commerce/src/index.ts --target bun --outdir dist/apps/commerce",
+    "build": "bun run build:gateway && bun run build:identity && bun run build:content && bun run build:commerce",
+    "typecheck": "bunx tsc --noEmit",
+    "docs:generate": "bun scripts/generate-openapi.ts",
+    "seed:four-games": "bun scripts/seed-four-games.ts",
+    "seed:local-course": "bun scripts/seed-local-course.ts",
+    "gateway": "bun apps/gateway/src/index.ts",
+    "identity": "bun apps/identity/src/index.ts",
+    "content": "bun apps/content/src/index.ts",
+    "commerce": "bun apps/commerce/src/index.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "firebase-admin": "^13.8.0",
+    "mongoose": "^8.19.1",
+    "pino": "^10.0.0",
+    "pino-http": "^11.0.0",
+    "stripe": "^22.1.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.9.1",
+    "typescript": "^5.9.3"
+  }
+}
